@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 @Entity
+@Table(name = "tb_pedido")
 public class Pedido implements Serializable {
 
     @Id

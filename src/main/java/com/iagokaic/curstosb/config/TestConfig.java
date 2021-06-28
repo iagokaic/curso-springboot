@@ -1,6 +1,8 @@
 package com.iagokaic.curstosb.config;
 
+import com.iagokaic.curstosb.entidades.Categoria;
 import com.iagokaic.curstosb.entidades.enums.StatusPedido;
+import com.iagokaic.curstosb.repositorios.RepositorioCategoria;
 import com.iagokaic.curstosb.repositorios.RepositorioPedido;
 import com.iagokaic.curstosb.repositorios.RepositorioUsuario;
 import com.iagokaic.curstosb.entidades.Pedido;
@@ -23,8 +25,18 @@ public class TestConfig  implements CommandLineRunner {
     @Autowired
     private RepositorioPedido repositorioPedido;
 
+    @Autowired
+    private RepositorioCategoria repositorioCategoria;
+
     @Override
     public void run(String... args) throws Exception {
+
+        Categoria cat1 = new Categoria(null, "Electronics");
+        Categoria cat2 = new Categoria(null, "Books");
+        Categoria cat3 = new Categoria(null, "Computers");
+
+        repositorioCategoria.saveAll(Arrays.asList(cat1, cat2, cat3));
+
         Usuario u1 = new Usuario(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
         Usuario u2 = new Usuario(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 
