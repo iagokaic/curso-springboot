@@ -1,6 +1,6 @@
 package com.iagokaic.curstosb.recursos;
 
-import com.iagokaic.curstosb.Servicos.ServicoPedido;
+import com.iagokaic.curstosb.servicos.ServicoPedido;
 import com.iagokaic.curstosb.entidades.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

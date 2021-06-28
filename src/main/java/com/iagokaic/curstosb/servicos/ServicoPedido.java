@@ -1,8 +1,7 @@
-package com.iagokaic.curstosb.Servicos;
+package com.iagokaic.curstosb.servicos;
 
-import com.iagokaic.curstosb.Repositorios.RepositorioPedido;
+import com.iagokaic.curstosb.repositorios.RepositorioPedido;
 import com.iagokaic.curstosb.entidades.Pedido;
-import com.iagokaic.curstosb.entidades.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
