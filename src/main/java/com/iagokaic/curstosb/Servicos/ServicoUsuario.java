@@ -1,6 +1,6 @@
 package com.iagokaic.curstosb.Servicos;
 
-import com.iagokaic.curstosb.Repositorios.UsuarioRepositorio;
+import com.iagokaic.curstosb.Repositorios.RepositorioUsuario;
 import com.iagokaic.curstosb.entidades.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +12,14 @@ import java.util.Optional;
 public class ServicoUsuario {
 
     @Autowired
-    private UsuarioRepositorio usuarioRepositorio;
+    private RepositorioUsuario repositorioUsuario;
 
     public List<Usuario> findAll() {
-        return usuarioRepositorio.findAll();
+        return repositorioUsuario.findAll();
     }
 
     public Usuario findById(Long id) {
-        Optional<Usuario> obj = usuarioRepositorio.findById(id);
+        Optional<Usuario> obj = repositorioUsuario.findById(id);
         return obj.get();
     }
 }
