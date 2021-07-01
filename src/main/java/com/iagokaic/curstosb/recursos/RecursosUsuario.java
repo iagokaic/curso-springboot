@@ -4,11 +4,10 @@ import com.iagokaic.curstosb.servicos.ServicoUsuario;
 import com.iagokaic.curstosb.entidades.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -28,5 +27,12 @@ public class RecursosUsuario {
     public ResponseEntity<Usuario> findById(@PathVariable Long id) {
         Usuario obj = servico.findById(id);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @PostMapping
+    public ResponseEntity<Usuario> inserir(@RequestBody Usuario obj) {
+        obj = servico.inserir(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
     }
 }
