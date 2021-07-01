@@ -1,5 +1,6 @@
 package com.iagokaic.curstosb.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.iagokaic.curstosb.entidades.pk.ItemPedidoPK;
 
 import javax.persistence.EmbeddedId;
@@ -13,7 +14,7 @@ import java.util.Objects;
 public class ItemPedido implements Serializable {
 
     @EmbeddedId
-    private ItemPedidoPK id;
+    private ItemPedidoPK id = new ItemPedidoPK();
 
     private Integer quantidade;
     private Double preco;
@@ -28,6 +29,7 @@ public class ItemPedido implements Serializable {
         this.preco = preco;
     }
 
+    @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
     }

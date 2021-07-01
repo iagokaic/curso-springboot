@@ -1,14 +1,8 @@
 package com.iagokaic.curstosb.config;
 
-import com.iagokaic.curstosb.entidades.Categoria;
-import com.iagokaic.curstosb.entidades.Produto;
+import com.iagokaic.curstosb.entidades.*;
 import com.iagokaic.curstosb.entidades.enums.StatusPedido;
-import com.iagokaic.curstosb.repositorios.RepositorioCategoria;
-import com.iagokaic.curstosb.repositorios.RepositorioPedido;
-import com.iagokaic.curstosb.repositorios.RepositorioProduto;
-import com.iagokaic.curstosb.repositorios.RepositorioUsuario;
-import com.iagokaic.curstosb.entidades.Pedido;
-import com.iagokaic.curstosb.entidades.Usuario;
+import com.iagokaic.curstosb.repositorios.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +26,9 @@ public class TestConfig  implements CommandLineRunner {
 
     @Autowired
     private RepositorioProduto repositorioProduto;
+
+    @Autowired
+    private RepositorioItemPedido repositorioItemPedido;
 
     @Override
     public void run(String... args) throws Exception {
@@ -67,5 +64,12 @@ public class TestConfig  implements CommandLineRunner {
 
         repositorioUsuario.saveAll(Arrays.asList(u1, u2));
         repositorioPedido.saveAll(Arrays.asList(o1, o2, o3));
+
+        ItemPedido oi1 = new ItemPedido(o1, p1, 2, p1.getPreco());
+        ItemPedido oi2 = new ItemPedido(o1, p3, 1, p3.getPreco());
+        ItemPedido oi3 = new ItemPedido(o2, p3, 2, p3.getPreco());
+        ItemPedido oi4 = new ItemPedido(o3, p5, 2, p5.getPreco());
+
+        repositorioItemPedido.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
     }
 }
