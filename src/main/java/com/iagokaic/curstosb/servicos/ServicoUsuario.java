@@ -2,6 +2,7 @@ package com.iagokaic.curstosb.servicos;
 
 import com.iagokaic.curstosb.repositorios.RepositorioUsuario;
 import com.iagokaic.curstosb.entidades.Usuario;
+import com.iagokaic.curstosb.servicos.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class ServicoUsuario {
 
     public Usuario findById(Long id) {
         Optional<Usuario> obj = repositorioUsuario.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public Usuario inserir(Usuario obj) {
