@@ -2,8 +2,11 @@ package com.iagokaic.curstosb.servicos;
 
 import com.iagokaic.curstosb.repositorios.RepositorioUsuario;
 import com.iagokaic.curstosb.entidades.Usuario;
+import com.iagokaic.curstosb.servicos.exceptions.DatabaseException;
 import com.iagokaic.curstosb.servicos.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +32,14 @@ public class ServicoUsuario {
     }
 
     public void deletar(Long id) {
-        repositorioUsuario.deleteById(id);
+        try {
+            repositorioUsuario.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+
     }
 
     public Usuario atualizar(Long id, Usuario obj) {
